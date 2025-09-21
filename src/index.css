@@ -1,0 +1,248 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Prata&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Cookie&display=swap");
+
+/* Tailwind V4.0 */
+@import "tailwindcss";
+
+/* Dark-Mode Toggle manually */
+@variant dark (&:where(.dark, .dark *));
+
+/* on-special-cases */
+/* body {
+  background: #1b1b1b;
+  scroll-behavior: smooth;
+} */
+
+/* FONTS */
+
+/* Custom Fonts */
+@font-face {
+  font-family: "poppins";
+  src: url(/fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+  font-family: "clash01";
+  src: url(/fonts/CLASHDISPLAY-MEDIUM.OTF);
+}
+
+.clash-display {
+  font-family: "clash01", sans-serif !important;
+}
+
+/* Google Fonts */
+* {
+  font-family: "poppins", "Plus Jakarta Sans", sans-serif;
+}
+
+.playfair-display {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  /* font-style: normal; */
+}
+
+.cookie-font {
+  font-family: "Cookie", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.montserrat {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+a.active hr {
+  display: block;
+}
+
+::-webkit-scrollbar {
+  display: none;
+  -webkit-scrollbar: none;
+}
+
+/* 🔷  Marquee Effect*/
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 40s linear infinite;
+  animation-play-state: var(--marquee-play-state, running);
+}
+
+.image {
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out; /* Morph-like transition */
+  transform: scale(1); /* Initial scale */
+}
+
+.image.exiting {
+  opacity: 0;
+  transform: scale(1.05); /* Slightly scale up on exit */
+}
+
+.image.entering {
+  opacity: 0;
+  transform: scale(0.95); /* Slightly scale down on enter */
+}
+
+.image.entering.image.entering-active,
+.image.entering-active {
+  opacity: 1;
+  transform: scale(1); /* Return to original scale */
+}
+
+/* --drop-shadow-3xl: 0 35px 35px rgba(0, 0, 0, 0.25);  */
+
+.color {
+  background-color: #ffebf5;
+  border-color: #c586a5;
+  color: #cc1379;
+}
+
+/* Git-Hub Black:  #0d1117 */
+
+/* Extending themes-example */
+@theme {
+  --color-prime-brown: #532822;
+  --color-prime-white: #fff4e9;
+  --color-prime-orange: #ff854b;
+  --color-sec-white: #f9f9f9;
+
+  --drop-shadow-3xl: 0 35px 35px rgba(0, 0, 0, 0.25);
+
+  /* Animations Extension */
+  --animate-wiggle: wiggle 2s ease-out infinite;
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-3deg);
+    }
+    50% {
+      transform: rotate(3deg);
+    }
+  }
+
+  --animate-border: border 5s linear infinite;
+  @keyframes border {
+    0% {
+      border-color: rgb(56, 189, 248); /* Tailwind CSS sky-400 */
+    }
+    50% {
+      border-color: rgb(236, 72, 153);
+    }
+    75% {
+      border-color: #adfe02;
+    }
+    100% {
+      border-color: rgb(56, 189, 248);
+    }
+  }
+
+  --animate-scroll: scroll 40s linear infinite;
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+/* CUSTOM_UTIITIES */
+/* @utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+} */
+@utility centered-row {
+  @apply flex items-center;
+}
+
+@utility mirror-x {
+  @apply transform scale-x-[-1];
+}
+
+@layer components {
+  .btn-hover {
+    @apply hover:bg-transparent hover:border hover:border-zinc-600 hover:transition-all;
+  }
+
+  .heading-1 {
+    @apply text-4xl md:text-5xl lg:text-6xl text-center lg:my-5 italic;
+  }
+
+  .col {
+    @apply flex flex-col;
+  }
+
+  .transition2 {
+    @apply transition-all duration-300 cursor-pointer ease-out;
+  }
+
+  .glass {
+    @apply bg-[#0A0A0A]/80  border border-white/10;
+  }
+
+  .card-hover {
+    @apply hover:bg-zinc-800 transition-all hover:text-zinc-100 duration-500;
+  }
+
+  .black-text {
+    @apply text-zinc-500/90;
+  }
+
+  .line-bottom {
+    @apply border-b border-b-zinc-500/40;
+  }
+
+  .center-item {
+    @apply centered-row justify-center;
+  }
+
+  .grad-text {
+    @apply text-transparent bg-gradient-to-tr  bg-clip-text;
+  }
+
+  .grad1 {
+    @apply text-transparent bg-gradient-to-tr bg-clip-text from-indigo-100 to-indigo-400;
+  }
+
+  .link-hover {
+    @apply hover:font-bold hover:text-zinc-800 transition-all duration-300 ease-in-out hover:-translate-y-1;
+  }
+}
+
+/* If Needed try: Small-Screen SpecialCase Fix */
+@media (max-width: 380px) {
+  .test {
+    /* background: salmon; */
+    font-size: 75px;
+  }
+
+  .something {
+    /* background: chocolate; */
+    font-size: 16px;
+    width: 340px;
+    position: absolute;
+    bottom: -380px;
+    left: 5px;
+    gap: 10px;
+  }
+}
+
+/* Full HD Layout Tweaks: special-case */
+@media (min-width: 1920px) {
+  .hero-img {
+    /* background-color: #fff; */
+    width: 1024px;
+  }
+}
